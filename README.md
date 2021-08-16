@@ -1,5 +1,5 @@
 # TMC Attach wizard
-<img src="images/logo.png" alt="Tanzu Kubernetes Grid Wizard (for TKGm on Azure)" width=200 height=220/>
+<img src="images/logo.png" alt="Attach to TMC" width=200 height=220/>
 
 This is a bootstrap environment with the below pre-installed and some handy wizards to create and attach clusters to tmc
 - az cli
