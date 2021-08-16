@@ -1,11 +1,14 @@
 # TMC Attach wizard
 <img src="images/logo.png" alt="Tanzu Kubernetes Grid Wizard (for TKGm on Azure)" width=200 height=220/>
 
-This is a bootstrap environment with
+This is a bootstrap environment with the below pre-installed and some handy wizards to create and attach clusters to tmc
 - az cli
+- kubectl
 - tmc cli (optional)
 - akstmcwizard --> lets you create aks cluster and attach to tmc via a simple prompt (recommended)
 - akscreateandattach --> lets you create aks cluster and attach to tmc through passing parameters.
+
+**The aim is to simplify user experience with tmc and aks**
 
 ## Prepare
 
