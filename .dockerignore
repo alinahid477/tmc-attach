@@ -8,3 +8,4 @@
 .tanzu
 .ssh
 .kube-tkg
+.images

@@ -25,10 +25,10 @@ RUN curl -o /usr/local/bin/jq -L https://github.com/stedolan/jq/releases/downloa
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-    && ./aws/install \
-    && rm -rf awscliv2.zip
+# RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+#     && unzip awscliv2.zip \
+#     && ./aws/install \
+#     && rm -rf awscliv2.zip
 
 # ENV DOCKERVERSION=20.10.8
 # RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \

@@ -3,12 +3,15 @@
 
 This is a bootstrap environment with
 - az cli
-- aws cli
-- tmc (optional)
+- tmc cli (optional)
 - akstmcwizard --> lets you create aks cluster and attach to tmc via a simple prompt (recommended)
 - akscreateandattach --> lets you create aks cluster and attach to tmc through passing parameters.
 
 ## Prepare
+
+### Prerequisites
+
+**The host machine must have docker-ce or docker-ee installed**
 
 ### .env file (optional but recommended)
 
