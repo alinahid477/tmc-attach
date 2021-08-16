@@ -84,10 +84,11 @@ ISTMCEXISTS=$(tmc --help)
 
 if [[ ! -z $ISTMCEXISTS && ! -z $tmcclustergroup ]]
 then
+    epoc=$(date +%s)
     printf "\n\Attaching to tmc using cluster group $tmcclustergroup \n"
     tmc login
-    tmc cluster attach --name $clustername --cluster-group $tmcclustergroup --output /tmp/attach-file.yaml 
-    kubectl apply -f /tmp/attach-file.yaml
+    tmc cluster attach --name $clustername --cluster-group $tmcclustergroup --output /tmp/attach-file-$epoc.yaml 
+    kubectl apply -f /tmp/attach-file-$epoc.yaml
 else
     printf "\n\Attaching tmc using:\n kubectl apply -f $tmcattachurl\n"
     kubectl apply -f $tmcattachurl
