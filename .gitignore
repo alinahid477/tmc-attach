@@ -18,3 +18,4 @@ binaries/*
 !binaries/akstmcwizard.sh
 !binaries/akscreateandattach.sh
 !binaries/readparams.sh
+!binaries/attach_to_tmc.sh

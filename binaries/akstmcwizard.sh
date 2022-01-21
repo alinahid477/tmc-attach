@@ -94,11 +94,24 @@ then
     printf "\n\n"
     unset inp;
 
-    read -p "ssh pub file path:(press enter to generate a new one on the fly) " inp
-    if [[ ! -z $inp ]]
+    unset idrsapublickeyfile
+    isidrsaexists=$(ls -l /root/.ssh/id_rsa.pub)
+    if [[ -n $isidrsaexists ]]
     then
-        sshkeyvalue=$inp           
-        echo "here....."
+        idrsapublickeyfile='/root/.ssh/id_rsa.pub'
+        dialog=$(echo "OR accept default: $idrsapublickeyfile")
+    fi
+    read -p "ssh pub file path:(press enter to generate a new one $dialog ) " inp
+    if [[ -z $inp ]]
+    then
+        if [[ -n $idrsapublickeyfile ]]
+        then
+            echo "Default file selected: $idrsapublickeyfile"
+            sshkeyvalue=$idrsapublickeyfile
+        fi
+    else
+        sshkeyvalue=$inp
+        echo "User input selected: $inp"
     fi
 
     printf "\n\n"

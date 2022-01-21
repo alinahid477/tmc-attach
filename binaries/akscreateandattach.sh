@@ -50,7 +50,7 @@ printf "\n\n"
 while true; do
     read -p "Confirm to proceed further? [y/n] " yn
     case $yn in
-        [Yy]* ) export "\nYou confirmed yes.\n\nProceeding...\n"; break;;
+        [Yy]* ) printf "\nYou confirmed yes.\n\nProceeding...\n"; break;;
         [Nn]* ) printf "\n\nYou said no. \n\nExiting...\n\n"; exit 1;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -84,15 +84,15 @@ ISTMCEXISTS=$(tmc --help)
 
 if [[ ! -z $ISTMCEXISTS && ! -z $tmcclustergroup ]]
 then
-    epoc=$(date +%s)
-    printf "\n\Attaching to tmc using cluster group $tmcclustergroup \n"
-    tmc login
-    tmc cluster attach --name $clustername --cluster-group $tmcclustergroup --output /tmp/attach-file-$epoc.yaml 
-    kubectl apply -f /tmp/attach-file-$epoc.yaml
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+    source $SCRIPT_DIR/attach_to_tmc.sh -g $tmcclustergroup -n $clustername
 else
     printf "\n\Attaching tmc using:\n kubectl apply -f $tmcattachurl\n"
     kubectl apply -f $tmcattachurl
-    printf "\n\nDONE\n\n"
+    printf "\nAttached...\n"
+    printf "\nWaiting 1 mins to complete cluster attach\n"
+    sleep 1m
+    printf "\n\nDONE.\n\n\n"
 fi
 
 
