@@ -6,4 +6,6 @@ printf "\nYour available wizards are:\n"
 echo -e "\t~/binaries/akstmcwizard.sh"
 echo -e "\t~/binaries/akscreateandattach.sh --help"
 
+cd ~
+
 /bin/bash
