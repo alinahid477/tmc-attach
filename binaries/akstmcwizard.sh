@@ -121,7 +121,7 @@ fi
 if [[ -z $tmcattachurl && -z $tmcclustergroup ]]
 then
     while [ -z "$inp" ]; do
-        read -p "tmc attach url OR cluster group name (either of one is required): " inp
+        read -p "tmc attach url OR cluster group name (either of one is required. Alternatively mention 'notmc' to avoid attach): " inp
         if [ -z "$inp" ]
         then
             printf "\nthis is a required field. you must provide a attach url.\n"
@@ -133,7 +133,7 @@ then
                     tmcattachurl=$inp
                 else
                     tmcclustergroup=$inp
-                fi
+                fi                
             fi
         fi
     done

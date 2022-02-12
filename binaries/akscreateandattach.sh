@@ -80,19 +80,25 @@ printf "\n\Switching context using:\n kubectl config use-context $clustername\n"
 kubectl config use-context $clustername
 printf "\n\nDONE\n\n"
 
-ISTMCEXISTS=$(tmc --help)
 
-if [[ ! -z $ISTMCEXISTS && ! -z $tmcclustergroup ]]
+if [[ -n $tmcclustergroup && $tmcclustergroup == 'notmc' ]]
 then
-    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-    source $SCRIPT_DIR/attach_to_tmc.sh -g $tmcclustergroup -n $clustername
+    printf "\nNo attach to tmc needed as instructed via notmc\n"
 else
-    printf "\n\Attaching tmc using:\n kubectl apply -f $tmcattachurl\n"
-    kubectl apply -f $tmcattachurl
-    printf "\nAttached...\n"
-    printf "\nWaiting 1 mins to complete cluster attach\n"
-    sleep 1m
-    printf "\n\nDONE.\n\n\n"
+    ISTMCEXISTS=$(tmc --help)
+
+    if [[ ! -z $ISTMCEXISTS && ! -z $tmcclustergroup ]]
+    then
+        SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+        source $SCRIPT_DIR/attach_to_tmc.sh -g $tmcclustergroup -n $clustername
+    else
+        printf "\n\Attaching tmc using:\n kubectl apply -f $tmcattachurl\n"
+        kubectl apply -f $tmcattachurl
+        printf "\nAttached...\n"
+        printf "\nWaiting 1 mins to complete cluster attach\n"
+        sleep 1m
+        printf "\n\nDONE.\n\n\n"
+    fi
 fi
 
 
