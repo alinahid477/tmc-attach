@@ -4,6 +4,7 @@ unset clustername
 unset resourcegroup
 unset nodecount
 unset nodevmsize
+unset nodeosdisksize
 unset tmcattachurl
 
 helpFunction()
@@ -13,7 +14,8 @@ helpFunction()
     echo -e "\t-n | --name name of cluster (required)"
     echo -e "\t-g | --group name of resource group (required)"
     echo -e "\t-c | --node-count node count number (optional, default: 3)"
-    echo -e "\t-s | --node-vm-size node vm size (optional, default: Standard_DS2_v2)"
+    echo -e "\t-s | --node-vm-size node vm size (optional)"
+    echo -e "\t-d | --node-osdisk-size node vm size (optional)"
     echo -e "\t-l | --tmc-attach-url link url of tmc attach url (either --tmc-attach-url or --tmc-cluster-group is required)"
     echo -e "\t-t | --tmc-cluster-group tmc cluster group name (either --tmc-attach-url or --tmc-cluster-group is required)"
 }
@@ -65,10 +67,22 @@ printf "\n\nCreating azure cluster using:\n"
 if [ -z "$sshkeyvalue" ]
 then
     printf " az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize\n"
-    az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --generate-ssh-keys
+    if [[ -n $nodeosdisksize ]]
+    then
+        az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --node-osdisk-size $nodeosdisksize --generate-ssh-keys
+    else
+        az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --generate-ssh-keys
+    fi
+    
 else
     printf " az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize\n"
-    az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --ssh-key-value $sshkeyvalue
+    if [[ -n $nodeosdisksize ]]
+    then
+        az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --node-osdisk-size $nodeosdisksize --ssh-key-value $sshkeyvalue
+    else
+        az aks create --resource-group $resourcegroup --name $clustername --node-count $nodecount --node-vm-size $nodevmsize --ssh-key-value $sshkeyvalue
+    fi
+    
 fi
 printf "\n\nDONE\n\n"
 

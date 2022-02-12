@@ -26,6 +26,11 @@ while true ; do
                 "" ) nodevmsize='Standard_DS2_v2'; shift 2 ;;
                 * ) nodevmsize=$2 ; shift 2 ;;
             esac ;;
+        -s | --node-osdisk-size )
+            case "$2" in
+                "" ) nodeosdisksize=''; shift 2 ;;
+                * ) nodeosdisksize=$2 ; shift 2 ;;
+            esac ;;
         -l | --tmc-attach-url )
             case "$2" in
                 "" ) tmcattachurl=''; shift 2 ;;

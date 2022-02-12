@@ -97,6 +97,17 @@ then
         fi
     done
 
+
+    printf "\n\n"
+    unset inp;
+    while true; do
+        read -p "node osdisk size:(press enter) " inp
+        if [[ -n $inp ]]
+        then
+            nodeosdisksize=$inp
+        fi
+    done
+
     printf "\n\n"
     unset inp;
 
@@ -150,7 +161,7 @@ fi
 
 if [[ ! -z $tmcattachurl ]]
 then
-    source ~/binaries/akscreateandattach.sh -g $resourcegroup -n $clustername  -c $nodecount -s $nodevmsize --tmc-attach-url $tmcattachurl
+    source ~/binaries/akscreateandattach.sh -g $resourcegroup -n $clustername  -c $nodecount -s $nodevmsize -d $nodeosdisksize --tmc-attach-url $tmcattachurl
 else
-    source ~/binaries/akscreateandattach.sh -g $resourcegroup -n $clustername  -c $nodecount -s $nodevmsize --tmc-cluster-group $tmcclustergroup
+    source ~/binaries/akscreateandattach.sh -g $resourcegroup -n $clustername  -c $nodecount -s $nodevmsize -d $nodeosdisksize --tmc-cluster-group $tmcclustergroup
 fi
