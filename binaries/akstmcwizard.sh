@@ -77,14 +77,20 @@ then
         fi
     done
 
+    # when present is .env file take the value from there else set a default value here
+    if [[ -z $DEFAULT_VM_SIZE ]]
+    then
+        DEFAULT_VM_SIZE=Standard_DS2_v2
+    fi
+
     printf "\n\n"
     unset inp;
 
     while [ -z "$inp" ]; do
-        read -p "node vm size:(press enter to keep default value 'Standard_DS2_v2') " inp
+        read -p "node vm size:(press enter to keep default value '$DEFAULT_VM_SIZE') " inp
         if [ -z "$inp" ]
         then
-            nodevmsize=Standard_DS2_v2
+            nodevmsize=$DEFAULT_VM_SIZE
             inp=$nodevmsize
         else 
             nodevmsize=$inp
@@ -121,10 +127,10 @@ fi
 if [[ -z $tmcattachurl && -z $tmcclustergroup ]]
 then
     while [ -z "$inp" ]; do
-        read -p "tmc attach url OR cluster group name (either of one is required. Alternatively mention 'notmc' to avoid attach): " inp
+        read -p "tmc attach url OR cluster group name (required. Alternatively mention 'notmc' to avoid attach): " inp
         if [ -z "$inp" ]
         then
-            printf "\nthis is a required field. you must provide a attach url.\n"
+            printf "\nthis is a required field. you must provide a value.\n"
         else 
             if [[ ! -z "$inp" ]]
             then
