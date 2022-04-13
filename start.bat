@@ -13,7 +13,7 @@ if "%name%" == "forcebuild" (
 
 if "%name%" == "" (
     echo "assuming default name is: tmcattach"
-    set name="tmcattach"
+    set name="merlin-tmcattach"
 )
 
 

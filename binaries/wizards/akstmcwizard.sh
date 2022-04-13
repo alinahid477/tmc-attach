@@ -107,13 +107,11 @@ function doAKSTMCWizard () {
 
         printf "\n\n"
         unset inp;
-        while true; do
-            read -p "node osdisk size:(press enter) " inp
-            if [[ -n $inp ]]
-            then
-                nodeosdisksize=$inp
-            fi
-        done
+        read -p "node osdisk size:(press enter to leave empty) " inp
+        if [[ -n $inp ]]
+        then
+            nodeosdisksize=$inp
+        fi
 
         printf "\n\n"
         unset inp;

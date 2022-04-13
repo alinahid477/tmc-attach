@@ -60,7 +60,7 @@ then
     then
         if [ -z "$TMC_CONTEXT" ]
         then
-            TMC_CONTEXT=aksclusters
+            TMC_CONTEXT="$CLOUD-clusters"
         fi
         printf "\nNo existing context found. TMC Login using context \'$TMC_CONTEXT\'...\n"
         tmc login --name $TMC_CONTEXT --no-configure

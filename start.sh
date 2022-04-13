@@ -7,7 +7,7 @@ then
 fi
 if [[ -z $name ]]
 then
-    name='tmcattach'
+    name='merlin-tmcattach'
 fi
 isexists=$(docker images | grep "\<$name\>")
 if [[ -z $isexists || $forcebuild == "forcebuild" ]]

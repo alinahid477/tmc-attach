@@ -40,10 +40,10 @@ RUN curl -o /usr/local/bin/jq -L https://github.com/stedolan/jq/releases/downloa
 # COPY .ssh/known_hosts /root/.ssh/
 # RUN chmod 600 /root/.ssh/id_rsa
 
-COPY binaries/wizard/init.sh /usr/local/
+COPY binaries/wizards/init.sh /usr/local/
 RUN chmod +x /usr/local/init.sh
 
-COPY binaries/wizard/init.sh /usr/local/bin/merlin
+COPY binaries/wizards/merlin.sh /usr/local/bin/merlin
 RUN chmod +x /usr/local/bin/merlin
 
 COPY binaries/tmc /usr/local/bin/
