@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -o /usr/local/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && \
   	chmod +x /usr/local/bin/jq
 
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+# RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 # RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
 #     && unzip awscliv2.zip \
@@ -40,8 +40,11 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # COPY .ssh/known_hosts /root/.ssh/
 # RUN chmod 600 /root/.ssh/id_rsa
 
-COPY binaries/init.sh /usr/local/
+COPY binaries/wizard/init.sh /usr/local/
 RUN chmod +x /usr/local/init.sh
+
+COPY binaries/wizard/init.sh /usr/local/bin/merlin
+RUN chmod +x /usr/local/bin/merlin
 
 COPY binaries/tmc /usr/local/bin/
 RUN chmod +x /usr/local/bin/tmc

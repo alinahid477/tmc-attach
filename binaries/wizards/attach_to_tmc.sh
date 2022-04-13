@@ -1,15 +1,17 @@
 #!/bin/bash
 
+source $HOME/binaries/scripts/returnOrexit.sh
+source $HOME/binaries/scripts/color-file.sh
 
 export $(cat /root/.env | xargs)
 
 helpFunction()
 {
-    printf "\nYou must provide all parameters.\n\n"
+    printf "\n${redcolor}You must provide all parameters.${normalcolor}\n\n"
     echo "Usage: $0"
     echo -e "\t-n name of cluster"
     echo -e "\t-g name cluster group in tmc"
-    exit 1 # Exit script after printing help
+    returnOrexit || return 1 # Exit script after printing help
 }
 
 while getopts "g:n:" opt
@@ -23,27 +25,27 @@ done
 
 if [ -z "$TMC_CLUSTER_GROUP" ] 
 then
-    printf "\n\nError: No cluster group given. Exit...\n"
-    exit
+    printf "\n\n${redcolor}Error: No cluster group given. Exit...${normalcolor}\n"
+    returnOrexit || return 1
 fi
 
 if [ -z "$CLUSTER_NAME" ]
 then
-    printf "\n\nError: No cluster name given. Exit...\n"
-    exit
+    printf "\n\n${redcolor}Error: No cluster name given. Exit...${normalcolor}\n"
+    returnOrexit || return 1
 fi
 
 printf "\n\nChecking cluster...\n"
 caniswitchcontext=$(kubectl config use-context $CLUSTER_NAME)
 if [[ -z $caniswitchcontext ]]
 then
-    printf "\n\nError: No k8s cluster exist. Exit...\n\n"
-    exit
+    printf "\n\n${redcolor}Error: No k8s cluster exist. Exit...${normalcolor}\n\n"
+    returnOrexit || return 1
     isclusterexist=$(kubectl get ns | grep kube-system | awk '{print $1}')
     if [ -z "$isclusterexist" ]
     then
-        printf "\n\nError: No k8s cluster exist. Exit...\n\n"
-        exit
+        printf "\n\n${redcolor}Error: No k8s cluster exist. Exit...${normalcolor}\n\n"
+        returnOrexit || return 1
     fi
 fi
 

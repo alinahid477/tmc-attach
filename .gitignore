@@ -14,8 +14,4 @@
 !.ssh/.gitkeep
 binaries/*
 !binaries/.gitkeep
-!binaries/init.sh
-!binaries/akstmcwizard.sh
-!binaries/akscreateandattach.sh
-!binaries/readparams.sh
-!binaries/attach_to_tmc.sh
+!binaries/wizards
