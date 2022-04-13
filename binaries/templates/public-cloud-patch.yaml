@@ -1,0 +1,6 @@
+spec:
+  impersonationProxy:
+    mode: auto
+    service:
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "4000"

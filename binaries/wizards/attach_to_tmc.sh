@@ -75,9 +75,19 @@ then
     kubectl config use-context $CLUSTER_NAME
     
     kubectl apply -f /tmp/attach-file-$epoc.yaml
-    printf "\nWaiting 1 mins to complete cluster attach\n"
-    sleep 1m
-    printf "\n\nDONE.\n\n\n"
+    printf "\n${yellowcolor}Waiting 3 mins to complete cluster attach...${normalcolor}\n"
+    sleep 3m
+    printf "\nApplying patch to opening access for public cloud k8s..."
+    kubectl patch credentialissuer cluster-auth-pinniped-config --type merge --patch-file binaries/templates/public-cloud-patch.yaml
+    sleep 5
+    printf "${greencolor}DONE.${normalcolor}"
+    printf "\nDeleting cluster-auth-pinniped-impersonation-proxy-load-balancer for pinniped restart..."
+    kubectl delete services -n vmware-system-tmc cluster-auth-pinniped-impersonation-proxy-load-balancer
+    sleep 5
+    printf "${greencolor}DONE.${normalcolor}"
+    printf "\nGetting pinniped to endpoint...\n"
+    kubectl get services -n vmware-system-tmc
+    printf "\n\n${greencolor}DONE.${normalcolor}\n\n\n"
 else
     printf "\n\ntmc command does not exist.\n\n"
     printf "\n\nChecking for binary presence...\n\n"
