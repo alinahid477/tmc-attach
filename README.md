@@ -28,10 +28,10 @@ The .env also contains a field called `TMC_API_TOKEN`. When value provided you w
 
 Values of .env files:
 - AZ_TENANT_ID={search 'tenant properties' in portal to get the azure tenant id}
-- AZ_TKG_APP_ID={APP_ID is also known as CLIENT_ID. To generate app id follow the below steps:}
+- AZ_APP_ID={APP_ID is also known as CLIENT_ID. To generate app id follow the below steps:}
     - In Azure portal console search 'app registration' > New Regitration. 
     - The process is documented here: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.3/vmware-tanzu-kubernetes-grid-13/GUID-mgmt-clusters-azure.html#register-tanzu-kubernetes-grid-as-an-azure-client-app-3
-- AZ_TKG_APP_CLIENT_SECRET={recorded secret from the above}
+- AZ_APP_CLIENT_SECRET={recorded secret from the above}
 - AZ_SUBSCRIPTION_ID={azure subscription id}
 - TMC_API_TOKEN={tmc api token for TMC authentication. Follow below steps to generate a TMC API Token:}
     - Navigate to https://console.cloud.vmware.com/csp/gateway/portal/#/user/profile (OR on tmc console click username at the top right corner > click My Accout)

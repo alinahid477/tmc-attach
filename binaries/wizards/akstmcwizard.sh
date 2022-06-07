@@ -22,13 +22,13 @@ function doAKSTMCWizard () {
     if [ -z "$ISAZLOGGEDIN" ]
     then
         printf "\n\nlogin to az\n\n"
-        if [ -z "$AZ_TENANT_ID" ] || [ -z "$AZ_TKG_APP_ID" ] || [ -z "$AZ_TKG_APP_ID" ]
+        if [ -z "$AZ_TENANT_ID" ] || [ -z "$AZ_APP_ID" ] || [ -z "$AZ_APP_ID" ]
         then
             printf "\n\naz login\n\n"
             az login
         else
-            printf "\n\naz login --service-principal --username $AZ_TKG_APP_ID --password $AZ_TKG_APP_CLIENT_SECRET --tenant $AZ_TENANT_ID\n\n"
-            az login --service-principal --username $AZ_TKG_APP_ID --password $AZ_TKG_APP_CLIENT_SECRET --tenant $AZ_TENANT_ID
+            printf "\n\naz login --service-principal --username $AZ_APP_ID --password $AZ_APP_CLIENT_SECRET --tenant $AZ_TENANT_ID\n\n"
+            az login --service-principal --username $AZ_APP_ID --password $AZ_APP_CLIENT_SECRET --tenant $AZ_TENANT_ID
         fi
         printf "\n\nLogged with below details\n"
         az account show
